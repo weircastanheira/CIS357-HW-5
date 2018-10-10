@@ -8,17 +8,18 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Conversion Calculator"
+        android:text="@string/conversion_calculator_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="To" />
+        android:text="@string/to_label" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,14 +39,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Meters" />
+            android:text="@string/measure_label1" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="From" />
+        android:text="@string/from_label" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Yards" />
+            android:text="@string/measure_label2" />
     </LinearLayout>
 
     <LinearLayout
@@ -78,21 +79,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Calculate" />
+            android:text="@string/calculate_button" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Clear" />
+            android:text="@string/clear_button" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Mode" />
+            android:text="@string/mode_button" />
     </LinearLayout>
 
 </LinearLayout>
