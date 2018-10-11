@@ -25,7 +25,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/to_label" />
+        android:text="From" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             android:ems="10"
             android:clickable="true"
             android:focusableInTouchMode="true"
-            android:hint="Enter to value"
+            android:hint="Enter from value"
             android:imeOptions="actionDone"
             android:inputType="numberDecimal" />
 
@@ -56,7 +56,7 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/from_label" />
+        android:text="To" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
             android:ems="10"
             android:clickable="true"
             android:focusableInTouchMode="true"
-            android:hint="Enter from value"
+            android:hint="Enter to value"
             android:imeOptions="actionDone"
             android:inputType="numberDecimal" />
 

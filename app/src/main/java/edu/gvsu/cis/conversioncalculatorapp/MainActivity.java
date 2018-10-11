@@ -18,9 +18,8 @@ import android.support.v7.widget.Toolbar;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
-  //  private static final String message = "Units Converter App"
+    public static final int VICE_SELECTION = 1;
     public static int mode = 0;
-
 
 
     @Override
@@ -40,61 +39,50 @@ public class MainActivity extends AppCompatActivity {
         TextView fromLabel = (TextView) findViewById(R.id.textView3);
         TextView titleLabel = (TextView) findViewById(R.id.textView6);
 
-       Button clearButton = (Button) findViewById(R.id.button2);
-       Button modeButton = (Button) findViewById(R.id.button3);
-       Button calcButton = (Button) findViewById(R.id.button1);
+        Button clearButton = (Button) findViewById(R.id.button2);
+        Button modeButton = (Button) findViewById(R.id.button3);
+        Button calcButton = (Button) findViewById(R.id.button1);
 
 
-       clearButton.setOnClickListener((View v)->{
+        clearButton.setOnClickListener((View v) -> {
             toField.setText("");
             fromField.setText("");
-       });
+        });
 
 
-       modeButton.setOnClickListener((View v)->{
-            if(mode == 0){
+        modeButton.setOnClickListener((View v) -> {
+            if (mode == 0) {
                 titleLabel.setText("Volume Converter");
                 toLabel.setText("Liters");
                 fromLabel.setText("Gallons");
                 mode++;
-            }
-            else{
+            } else {
                 titleLabel.setText("Length Converter");
                 toLabel.setText("Yards");
                 fromLabel.setText("Meters");
                 mode--;
             }
 
-           //code here for mode switch
+            //code here for mode switch
 
 
         });
 
-        calcButton.setOnClickListener((View v)->{
+        calcButton.setOnClickListener((View v) -> {
 
-         //code here for calculate button
-
+            //code here for calculate button
 
 
         });
 
-
-//        fromField.setOnClickListener((View v)->{
-//            toField.setText("");
-//
-//        });
-//        toField.setOnClickListener((View v)->{
-//            fromField.setText("");
-//
-//        });
 
         fromField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     toField.setText("");
                 }
-                if(!hasFocus){
+                if (!hasFocus) {
                     hideKeyboard(view);
                 }
             }
@@ -102,21 +90,21 @@ public class MainActivity extends AppCompatActivity {
         toField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     fromField.setText("");
                 }
-                if(!hasFocus){
+                if (!hasFocus) {
                     hideKeyboard(view);
                 }
             }
         });
 
 
-
     }
-    public void hideKeyboard(View view){
-        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
     }
 
@@ -131,14 +119,34 @@ public class MainActivity extends AppCompatActivity {
     //determine what item is selected
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent myIntent = new Intent(this,SettingsActivity.class);
-                startActivityForResult(myIntent,0);
+                Intent myIntent = new Intent(this, SettingsActivity.class);
+                startActivityForResult(myIntent, VICE_SELECTION);
 
 
         }
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == VICE_SELECTION) {
+            TextView from = (TextView) findViewById(R.id.textView3);
+            TextView to = (TextView) findViewById(R.id.textView5);
+            from.setText(data.getStringExtra("vice"));
+            to.setText((data.getStringExtra("vice")));
+
+
+        }
+
+    }
 }
+/*
+Just need to figure out how to distinguish which spinner was selected to change which textfield
+in the method above. Then calculate needs to be done :^)
+
+ */
+
+

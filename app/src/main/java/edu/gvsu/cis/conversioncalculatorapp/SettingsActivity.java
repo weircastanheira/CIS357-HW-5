@@ -1,5 +1,6 @@
 package edu.gvsu.cis.conversioncalculatorapp;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 public class SettingsActivity extends AppCompatActivity {
-
+    public String selection = "Meters";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,7 @@ public class SettingsActivity extends AppCompatActivity {
         ArrayAdapter<String> volAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, volumeSpinner2);
         volAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+
         if(MainActivity.mode ==0) {
             toSpinner.setAdapter(adapter2);
             fromSpinner.setAdapter(adapter);
@@ -62,6 +64,8 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
+                selection = (String) adapterView.getItemAtPosition(i);
+
                 }
 
 
@@ -70,13 +74,34 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
-        fab.setOnClickListener((View view)->{
-            //saves data from spinner
+        fromSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selection = (String) adapterView.getItemAtPosition(i);
+            }
 
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        fab.setOnClickListener(new View.OnClickListener(){
+            @Override
+                    public void onClick(View view){
+                Intent intent = new Intent();
+                intent.putExtra("vice",selection);
+                setResult(MainActivity.VICE_SELECTION, intent);
+                finish();
+
+            }
 
 
             });
+
+
+
+
     }
 
 
