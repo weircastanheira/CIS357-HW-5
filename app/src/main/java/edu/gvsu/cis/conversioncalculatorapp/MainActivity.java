@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
-        EditText toField = (EditText) findViewById(R.id.editText2);
-        EditText fromField = (EditText) findViewById(R.id.editText3);
+        EditText toField = (EditText) findViewById(R.id.editText3);
+        EditText fromField = (EditText) findViewById(R.id.editText2);
 
 
         TextView toLabel = (TextView) findViewById(R.id.textView5);
@@ -42,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
         Button clearButton = (Button) findViewById(R.id.button2);
         Button modeButton = (Button) findViewById(R.id.button3);
         Button calcButton = (Button) findViewById(R.id.button1);
+
+//        double top = Double.parseDouble(fromField.getText().toString());
+//        double bottom = Double.parseDouble(toField.getText().toString());
+//        UnitsConverter.LengthUnits topLabel = UnitsConverter.LengthUnits.valueOf(fromLabel.getText().toString());
+//        UnitsConverter.LengthUnits bottomLabel = UnitsConverter.LengthUnits.valueOf(toLabel.getText().toString());
+
+
 
 
         clearButton.setOnClickListener((View v) -> {
@@ -53,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         modeButton.setOnClickListener((View v) -> {
             hideKeyboard();
+            toField.setText("");
+            fromField.setText("");
             if (mode == 0) {
                 titleLabel.setText("Volume Converter");
                 toLabel.setText("Liters");
@@ -65,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 mode--;
             }
 
-            //code here for mode switch
 
 
         });
@@ -73,7 +81,39 @@ public class MainActivity extends AppCompatActivity {
         calcButton.setOnClickListener((View v) -> {
             hideKeyboard();
 
-            //code here for calculate button
+            if(!fromField.getText().toString().equals("") && toField.getText().toString().equals("")){
+                if(mode == 0) {
+                    double top = Double.parseDouble(fromField.getText().toString());
+                    UnitsConverter.LengthUnits topLabel = UnitsConverter.LengthUnits.valueOf(fromLabel.getText().toString());
+                    UnitsConverter.LengthUnits bottomLabel = UnitsConverter.LengthUnits.valueOf(toLabel.getText().toString());
+                    double lengthConv = UnitsConverter.convert(top, topLabel, bottomLabel);
+                    toField.setText(""+lengthConv);
+                }
+                if(mode == 1) {
+                    double top = Double.parseDouble(fromField.getText().toString());
+                    UnitsConverter.VolumeUnits topLabel2 = UnitsConverter.VolumeUnits.valueOf(fromLabel.getText().toString());
+                    UnitsConverter.VolumeUnits bottomLabel2 = UnitsConverter.VolumeUnits.valueOf(toLabel.getText().toString());
+                    double lengthConv = UnitsConverter.convert(top, topLabel2, bottomLabel2);
+                    toField.setText(""+lengthConv);
+                }
+
+            }
+            if(fromField.getText().toString().equals("") && !toField.getText().toString().equals("")) {
+                if (mode == 0) {
+                    double bottom = Double.parseDouble(toField.getText().toString());
+                    UnitsConverter.LengthUnits topLabel = UnitsConverter.LengthUnits.valueOf(fromLabel.getText().toString());
+                    UnitsConverter.LengthUnits bottomLabel = UnitsConverter.LengthUnits.valueOf(toLabel.getText().toString());
+                    double lengthConv = UnitsConverter.convert(bottom, bottomLabel, topLabel);
+                    fromField.setText("" + lengthConv);
+                }
+                if (mode == 1) {
+                    double bottom = Double.parseDouble(toField.getText().toString());
+                    UnitsConverter.VolumeUnits topLabel2 = UnitsConverter.VolumeUnits.valueOf(fromLabel.getText().toString());
+                    UnitsConverter.VolumeUnits bottomLabel2 = UnitsConverter.VolumeUnits.valueOf(toLabel.getText().toString());
+                    double lengthConv = UnitsConverter.convert(bottom, bottomLabel2, topLabel2);
+                    fromField.setText("" + lengthConv);
+                }
+            }
 
 
         });
@@ -128,6 +168,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
+                EditText to = (EditText) findViewById(R.id.editText3);
+                EditText from = (EditText) findViewById(R.id.editText2);
+                from.setText("");
+                to.setText("");
                 Intent myIntent = new Intent(this, SettingsActivity.class);
                 startActivityForResult(myIntent, VICE_SELECTION);
 
@@ -143,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
             TextView from = (TextView) findViewById(R.id.textView3);
             TextView to = (TextView) findViewById(R.id.textView5);
             from.setText(data.getStringExtra("vice"));
-            to.setText((data.getStringExtra("vice")));
+            to.setText((data.getStringExtra("vice2")));
 
 
         }

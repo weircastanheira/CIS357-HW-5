@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 public class SettingsActivity extends AppCompatActivity {
     public String selection = "Meters";
+    public String selection2 = "Yards";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +65,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                selection = (String) adapterView.getItemAtPosition(i);
+                selection2 = (String) adapterView.getItemAtPosition(i);
 
                 }
 
@@ -91,6 +92,7 @@ public class SettingsActivity extends AppCompatActivity {
                     public void onClick(View view){
                 Intent intent = new Intent();
                 intent.putExtra("vice",selection);
+                intent.putExtra("vice2",selection2);
                 setResult(MainActivity.VICE_SELECTION, intent);
                 finish();
 
