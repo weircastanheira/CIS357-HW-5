@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
@@ -45,12 +45,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         clearButton.setOnClickListener((View v) -> {
+            hideKeyboard();
             toField.setText("");
             fromField.setText("");
         });
 
 
         modeButton.setOnClickListener((View v) -> {
+            hideKeyboard();
             if (mode == 0) {
                 titleLabel.setText("Volume Converter");
                 toLabel.setText("Liters");
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         calcButton.setOnClickListener((View v) -> {
+            hideKeyboard();
 
             //code here for calculate button
 
@@ -83,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
                     toField.setText("");
                 }
                 if (!hasFocus) {
-                    hideKeyboard(view);
+                    hideKeyboard();
+                    //hide keyboard
                 }
             }
         });
@@ -94,19 +98,22 @@ public class MainActivity extends AppCompatActivity {
                     fromField.setText("");
                 }
                 if (!hasFocus) {
-                    hideKeyboard(view);
+                    hideKeyboard();
+                    // hide keyboard
                 }
             }
         });
 
 
     }
-
-    public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    public void hideKeyboard() {
+        if(getCurrentFocus() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
