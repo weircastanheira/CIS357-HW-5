@@ -1,5 +1,6 @@
 package edu.gvsu.cis.conversioncalculatorapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -71,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
     //determine what item is selected
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.action_settings:
+                Intent myIntent = new Intent(this,SettingsActivity.class);
+                startActivityForResult(myIntent,0);
+
+
+        }
         return super.onOptionsItemSelected(item);
     }
 }
