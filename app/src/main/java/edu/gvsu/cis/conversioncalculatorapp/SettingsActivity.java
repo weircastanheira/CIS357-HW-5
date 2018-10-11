@@ -1,5 +1,6 @@
 package edu.gvsu.cis.conversioncalculatorapp;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         ((ActionBar) actionBar).setDisplayHomeAsUpEnabled(true);
 
-
+        FloatingActionButton fab = findViewById(R.id.floatingActionButton10);
 
         Spinner toSpinner  = (Spinner) findViewById(R.id.toSpinner);
         Spinner fromSpinner = (Spinner) findViewById(R.id.fromSpinner);
@@ -31,26 +32,51 @@ public class SettingsActivity extends AppCompatActivity {
         String[] lengthSpinner2 = new String[]{
                 "Yards","Meters","Miles"
         };
+        String[] volumeSpinner = new String[]{
+                "Gallons","Liters","Quarts"
+        };
+        String[] volumeSpinner2 = new String[]{
+                "Liters","Gallons","Quarts"
+        };
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lengthSpinner2);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lengthSpinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        toSpinner.setAdapter(adapter2);
-        fromSpinner.setAdapter(adapter);
 
+        //volume adapters
+        ArrayAdapter<String> volAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, volumeSpinner);
+        volAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> volAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, volumeSpinner2);
+        volAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        if(MainActivity.mode ==0) {
+            toSpinner.setAdapter(adapter2);
+            fromSpinner.setAdapter(adapter);
+        }
+        if(MainActivity.mode==1){
+            toSpinner.setAdapter(volAdapter2);
+            fromSpinner.setAdapter(volAdapter);
+        }
 
         toSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-            }
+                }
+
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
+        fab.setOnClickListener((View view)->{
+            //saves data from spinner
 
+
+
+
+            });
     }
 
 
