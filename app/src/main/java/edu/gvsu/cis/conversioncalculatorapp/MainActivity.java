@@ -194,10 +194,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
-/*
-Just need to figure out how to distinguish which spinner was selected to change which textfield
-in the method above. Then calculate needs to be done :^)
 
- */
 
 
