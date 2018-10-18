@@ -50,27 +50,19 @@
             android:id="@+id/toSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"><![CDATA[
-
-
-            android:clickable=
-            app:srcCompat=?android:attr/textCheckMark" />
-    ]]>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/floatingActionButton10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
+            android:layout_gravity="bottom|right"
             android:backgroundTint="@color/colorAccent"
             android:clickable="true"
+            android:cropToPadding="false"
             app:srcCompat="?android:attr/textCheckMark"
-            android:layout_margin="16dp"/>
+            app:useCompatPadding="true" />
     </LinearLayout>
+
+
 
 </LinearLayout>
